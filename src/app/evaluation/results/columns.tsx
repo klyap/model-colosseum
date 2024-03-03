@@ -17,7 +17,8 @@ export type Benchmark = {
 
 const scoreCell = ({ row, column }: { row: Row<Benchmark>; column: Column<Benchmark> }) => {
   const columnName = column.id || "";
-  const amount = (parseFloat(row.getValue(columnName))).toFixed(2) + '%';
+  const amount = parseFloat(row.getValue(columnName))
+
   return <div className="text-lg text-center">{amount}</div>
 }
 
@@ -28,6 +29,7 @@ const modelNameCell = ({ row }: { row: Row<Benchmark> }) => {
     <div>{modelName}</div>
     <div className="text-gray-500">{"v3-030224"}</div>
     <div className="text-gray-500 truncate">"{prompt}"</div>
+
   </div>
 }
 
@@ -59,21 +61,21 @@ export const columns: ColumnDef<Benchmark>[] = [
   {
     accessorKey: "benchmark_1",
     header: sortableHeader("Customer Service Triage Quality"),
-    cell: scoreCell
+    cell: (props) => scoreCell({ ...props, handleCellClick })
   },
   {
     accessorKey: "benchmark_2",
     header: sortableHeader("Customer Service Live SBS"),
-    cell: scoreCell
+    cell: (props) => scoreCell({ ...props, handleCellClick })
   },
   {
     accessorKey: "benchmark_3",
     header: sortableHeader("Off-brand responses"),
-    cell: scoreCell
+    cell: (props) => scoreCell({ ...props, handleCellClick })
   },
   {
     accessorKey: "jailbreak",
     header: sortableHeader("Superfresh Jailbreaks"),
-    cell: scoreCell
+    cell: (props) => scoreCell({ ...props, handleCellClick })
   },
 ]

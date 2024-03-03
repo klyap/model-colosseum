@@ -23,13 +23,11 @@ import {
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[]
   data: TData[]
-  handleCellClick: (column: string, row: string) => void
 }
 
 export function DataTable<TData, TValue>({
   columns,
   data,
-  handleCellClick
 }: DataTableProps<TData, TValue>) {
   const [sorting, setSorting] = useState<SortingState>([])
 
@@ -73,7 +71,7 @@ export function DataTable<TData, TValue>({
                 data-state={row.getIsSelected() && "selected"}
               >
                 {row.getVisibleCells().map((cell) => (
-                  <TableCell key={cell.id} onClick={() => handleCellClick(cell.column.id, row.id)}>
+                  <TableCell key={cell.id}>
                     {flexRender(cell.column.columnDef.cell, cell.getContext())}
                   </TableCell>
                 ))}
