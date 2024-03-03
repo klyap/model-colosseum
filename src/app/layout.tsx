@@ -19,23 +19,26 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <nav className="w-full flex justify-end">
-          <ul className="flex list-none m-0 p-0 gap-4">
-            <li
+        <nav className="w-full flex justify-between bg-gray-100 px-12 py-4">
+          <div className="text-xl font-semibold">
+            <Link href="/">Model Colosseum</Link>
+          </div>
+          <div className="flex gap-8">
+            <div
               className={`text-lg hover:text-blue-600 ${
                 path.includes("/benchmark") ? "text-blue-600" : ""
               }`}
             >
               <Link href="/benchmark">Benchmarks</Link>
-            </li>
-            <li
+            </div>
+            <div
               className={`text-lg hover:text-blue-600 ${
                 path.includes("/evaluation") ? "text-blue-600" : ""
               }`}
             >
               <Link href="/evaluation">Evaluations</Link>
-            </li>
-          </ul>
+            </div>
+          </div>
         </nav>
         {children}
       </body>
