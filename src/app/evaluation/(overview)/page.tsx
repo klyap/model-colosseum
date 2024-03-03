@@ -1,57 +1,53 @@
-import {
-  Table,
-  TableBody,
-  TableCaption,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from "@/components/ui/table";
+"use client";
+
 import { Benchmark, columns } from "../columns";
 import { DataTable } from "../data-table";
+import { evaluations } from "@/lib/data/evaluations";
+import { useState, useEffect } from "react"
 
-const benchmarks = [
-  "Customer Service Triage Quality Offline ⬇️",
-  "Customer Service Live SBS",
-  "Off-brand responses",
-  "Superfresh Jailbreaks",
-];
-
-interface ModelScores {
-  [key: string]: { version: string };
-}
-const modelsAndScores: ModelScores = {
-  llama_7b_internal_030224_v2_final: { version: "v3-030224" },
-  "Mixtral 8x7B": { version: "v3-030224" },
-  "Mistral 7B": { version: "v3-030224" },
-  GPT4: { version: "v3-030224" },
+type EvaluationResult = {
+  model: string;
+  modelVersion: string;
+  metric: string;
+  prompt: string;
+  values: { input: string; modelOutput: string; correctOutput: string; isCorrect: boolean; }[];
 };
 
-async function getData(): Promise<Benchmark[]> {
-  // Fetch data from your API here.
-  const randomInt = (min: number, max: number) =>
-    Math.floor(Math.random() * (max - min + 1)) + min;
-  return [
-    {
-      model_name: "Llama 2",
-      benchmark_1: randomInt(70, 99),
-      benchmark_2: randomInt(70, 99),
-      benchmark_3: randomInt(70, 99),
-      jailbreak: randomInt(70, 99),
-    },
-    {
-      model_name: "Llama 2",
-      benchmark_1: randomInt(70, 99),
-      benchmark_2: randomInt(70, 99),
-      benchmark_3: randomInt(70, 99),
-      jailbreak: randomInt(70, 99),
-    },
-    // ...
-  ];
+type EvaluationReport = {
+  id: string;
+  name: string;
+  createdByName: string;
+  createdAt: string;
+  updatedAt: string;
+  status: string;
+  evalResults: EvaluationResult[];
+};
+
+function getData(currentEvalReport: EvaluationReport): Promise<Benchmark[]> {
+  if (!currentEvalReport || !currentEvalReport.evalResults) return Promise.resolve([]);
+  return Promise.resolve(currentEvalReport.evalResults.map(benchmark => {
+    const correctValuesPercentage = benchmark.values.filter(value => value.isCorrect).length / benchmark.values.length * 100;
+    return {
+      model_name: benchmark.model,
+      benchmark_1: correctValuesPercentage,
+      benchmark_2: correctValuesPercentage,
+      benchmark_3: correctValuesPercentage,
+      jailbreak: correctValuesPercentage
+    }
+  }));
 }
 
-export default async function EvaluationDetail() {
-  const data = await getData();
+export default function EvaluationDetail({ selectedId }: { selectedId: string }) {
+  const id = selectedId;
+  const [data, setData] = useState<Benchmark[]>([]); // Use state to manage the data
+
+  const currentEvalReport: EvaluationReport | undefined = evaluations.find(evaluation => evaluation.id === id);
+
+  useEffect(() => {
+    if (currentEvalReport) {
+      getData(currentEvalReport).then(setData); // Use async operation to set data
+    }
+  }, [currentEvalReport]); // Dependency array to avoid unnecessary re-renders
 
   return (
     <>
