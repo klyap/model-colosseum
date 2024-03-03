@@ -13,7 +13,7 @@ export default function EvaluationSidebar({
 }) {
   return (
     <div className="flex flex-row min-h-96">
-      <div className="w-96 max-w-96 h-100 border-r flex flex-col justify-between">
+      <div className="w-96 min-w-48 h-100 border-r flex flex-col justify-between">
         <div>
           {evaluations.map((b) => {
             const isSelected = b.id === selectedId;
