@@ -18,21 +18,21 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <nav className="w-full flex justify-between bg-gray-300 px-12 py-4 border-b border-gray-300">
-          <div className="text-xl font-semibold">
+        <nav className="w-full flex justify-between  px-8 py-4 border-b border-gray-300 shadow-md">
+          <div className="text-xl font-semibold text-indigo-700">
             <Link href="/">Model Colosseum</Link>
           </div>
-          <div className="flex gap-8 text-gray-500 font-medium">
+          <div className="flex gap-8 text-gray-400 font-medium text-md my-auto">
             <div
-              className={`text-lg hover:text-gray-800 ${
-                path.includes("/benchmark") ? "text-gray-800" : ""
+              className={` hover:text-indigo-800 ${
+                path.includes("/benchmark") ? "text-indigo-800" : ""
               }`}
             >
               <Link href="/benchmark/1">Benchmarks</Link>
             </div>
             <div
-              className={`text-lg hover:text-gray-800 ${
-                path.includes("/evaluation") ? "text-gray-800" : ""
+              className={` hover:text-indigo-800 ${
+                path.includes("/evaluation") ? "text-indigo-800" : ""
               }`}
             >
               <Link href="/evaluation/1">Evaluations</Link>
@@ -46,14 +46,14 @@ export default function RootLayout({
               Made with ❤️ at the SPC OpenAI Hackathon. Team:{" "}
               <a
                 href="https://twitter.com/noahmacca"
-                className="hover:text-gray-800"
+                className="hover:text-indigo-800"
               >
                 {" "}
                 @noahmacca,
               </a>{" "}
               <a
                 href="https://twitter.com/soniajoseph"
-                className="hover:text-gray-800"
+                className="hover:text-indigo-800"
               >
                 {" "}
                 @soniajoseph{" "}
