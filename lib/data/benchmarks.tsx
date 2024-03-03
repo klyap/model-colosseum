@@ -1,6 +1,7 @@
 export const benchmarks = [
   {
-    id: 123,
+    id: "1",
+    name: "Customer Service Triage Quality",
     createdByName: "Noah",
     createdAt: "2024-03-01T02:23:53.528Z",
     updatedAt: "2024-03-03T02:21:53.528Z",
@@ -188,6 +189,34 @@ export const benchmarks = [
           "I received a cracked screen on my Phone C. What are my options?",
         output: "A: Escalate",
         source: "synthetic",
+      },
+    ],
+  },
+  {
+    id: "2",
+    name: "Great Benchmark",
+    createdByName: "Noah",
+    createdAt: "2024-03-02T02:23:53.528Z",
+    updatedAt: "2024-03-02T02:21:53.528Z",
+    description:
+      "This benchmark measures the effectiveness and efficiency of customer service triage systems. It evaluates how well a system can categorize and prioritize customer inquiries, ensuring that the most critical issues are addressed promptly and accurately.",
+    data: [
+      {
+        input:
+          "My computer won't turn on when I press the power button. The lights blink for a second and then nothing happens.",
+        output: "A: Escalate",
+        source: "csv",
+      },
+      {
+        input: "How do I reset my password if I forgot it?",
+        output: "B: Auto Reply",
+        source: "csv",
+      },
+      {
+        input:
+          "Do you sell refurbished models of Phone X? I want to buy one but don't need the latest model.",
+        output: "C: No Response",
+        source: "csv",
       },
     ],
   },
