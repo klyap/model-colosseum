@@ -63,12 +63,7 @@ export const columns: ColumnDef<Benchmark>[] = [
   },
   {
     accessorKey: "benchmark_2",
-    header: sortableHeader("Customer Service Live SBS"),
-    cell: scoreCell
-  },
-  {
-    accessorKey: "benchmark_3",
-    header: sortableHeader("Off-brand responses"),
+    header: sortableHeader("Agent Audit Accuracy"),
     cell: scoreCell
   },
   {

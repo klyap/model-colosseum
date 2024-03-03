@@ -80,10 +80,10 @@ const ResultsTable = ({ currentEvalReport, selectedCell, columnsMap }: { current
       <table>
         <thead>
           <tr>
-            <th className="p-2">Correct Output</th>
             <th className="p-2">Input</th>
-            <th className="p-2">Is Correct</th>
+            <th className="p-2">Correct Output</th>
             <th className="p-2">Model Output</th>
+            <th className="p-2">Is Correct</th>
           </tr>
         </thead>
         <tbody>
@@ -122,7 +122,30 @@ export default function EvaluationDetail({ selectedId }: { selectedId: string })
 
   useEffect(() => {
     if (currentEvalReport) {
-      getData(currentEvalReport).then(setData); // Use async operation to set data
+      const data = [
+        {
+          model_name: "llama-2-70b-chat",
+          benchmark_1: 56.76,
+          benchmark_2: 82.18,
+          jailbreak: 31.25,
+        },
+        {
+          model_name: "llama-2-13b-chat",
+          benchmark_1: 64.86,
+          benchmark_2: 91.09,
+          jailbreak: 12.50,
+        },
+        {
+          model_name: "mistral-7b-instruct-v0.2",
+          benchmark_1: 64.86,
+          benchmark_2: 86.14,
+          jailbreak: 6.25,
+        }
+      ] as Benchmark[];
+      setData(
+        data
+      )
+      // getData(currentEvalReport).then(setData); // Use async operation to set data
     }
   }, [currentEvalReport]); // Dependency array to avoid unnecessary re-renders
 
