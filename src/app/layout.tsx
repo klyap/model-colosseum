@@ -18,7 +18,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <nav className="w-full flex justify-between bg-purple-200 px-12 py-4 border-b border-gray-300">
+        <nav className="w-full flex justify-between bg-gray-300 px-12 py-4 border-b border-gray-300">
           <div className="text-xl font-semibold">
             <Link href="/">Model Colosseum</Link>
           </div>
