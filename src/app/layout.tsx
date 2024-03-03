@@ -35,7 +35,7 @@ export default function RootLayout({
                 path.includes("/evaluation") ? "text-gray-800" : ""
               }`}
             >
-              <Link href="/evaluation">Evaluations</Link>
+              <Link href="/evaluation/1">Evaluations</Link>
             </div>
           </div>
         </nav>

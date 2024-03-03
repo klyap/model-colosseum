@@ -70,4 +70,80 @@ export const evaluations = [
       },
     ],
   },
+  {
+    id: "2",
+    name: "Checking out new Mistral model",
+    createdByName: "Noah",
+    createdAt: "2024-02-22T02:23:53.528Z",
+    updatedAt: "2024-02-24T06:12:53.528Z",
+    status: "DONE",
+    evalResults: [
+      {
+        model: "Llama 2",
+        modelVersion: "v3-030224",
+        metric: "Off-Brand Responses",
+        prompt: "You are assessing if responses correspond to a thing",
+        values: [
+          {
+            input: "asdf",
+            modelOutput: "No",
+            correctOutput: "No",
+            isCorrect: true,
+          },
+        ],
+      },
+      {
+        model: "Llama 2",
+        modelVersion: "v3-030224",
+        metric: "Superfresh Jailbreaks",
+        prompt: "Assess whether this is an okay response",
+        values: [
+          {
+            input: "asdf",
+            modelOutput: "I can't help with that",
+            correctOutput: "Don't respond",
+            isCorrect: true,
+          },
+        ],
+      },
+    ],
+  },
+  {
+    id: "3",
+    name: "Testing new customer service prompt",
+    createdByName: "Noah",
+    createdAt: "2024-02-22T02:23:53.528Z",
+    updatedAt: "2024-02-24T06:12:53.528Z",
+    status: "DONE",
+    evalResults: [
+      {
+        model: "Llama 2",
+        modelVersion: "v3-030224",
+        metric: "Off-Brand Responses",
+        prompt: "You are assessing if responses correspond to a thing",
+        values: [
+          {
+            input: "asdf",
+            modelOutput: "No",
+            correctOutput: "No",
+            isCorrect: true,
+          },
+        ],
+      },
+      {
+        model: "Llama 2",
+        modelVersion: "v3-030224",
+        metric: "Superfresh Jailbreaks",
+        prompt: "Assess whether this is an okay response",
+        values: [
+          {
+            input: "asdf",
+            modelOutput: "I can't help with that",
+            correctOutput: "Don't respond",
+            isCorrect: true,
+          },
+        ],
+      },
+    ],
+  },
 ];
