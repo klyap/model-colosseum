@@ -18,21 +18,21 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <nav className="w-full flex justify-between bg-gray-100 px-12 py-4 border-b border-gray-300">
+        <nav className="w-full flex justify-between bg-purple-200 px-12 py-4 border-b border-gray-300">
           <div className="text-xl font-semibold">
             <Link href="/">Model Colosseum</Link>
           </div>
-          <div className="flex gap-8">
+          <div className="flex gap-8 text-gray-500">
             <div
-              className={`text-lg hover:text-blue-600 ${
-                path.includes("/benchmark") ? "text-blue-600" : ""
+              className={`text-lg hover:text-gray-800 ${
+                path.includes("/benchmark") ? "text-gray-800" : ""
               }`}
             >
               <Link href="/benchmark/1">Benchmarks</Link>
             </div>
             <div
-              className={`text-lg hover:text-blue-600 ${
-                path.includes("/evaluation") ? "text-blue-600" : ""
+              className={`text-lg hover:text-gray-800 ${
+                path.includes("/evaluation") ? "text-gray-800" : ""
               }`}
             >
               <Link href="/evaluation">Evaluations</Link>

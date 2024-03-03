@@ -1,20 +1,27 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import { benchmarks } from "@/lib/data/benchmarks";
 import BenchmarkSidebar from "@/components/ui/BenchmarkSidebar";
 
 export default function Benchmark({ params }: { params: { id: string } }) {
   const [dataFilter, setDataFilter] = React.useState("All");
+  const [currentPage, setCurrentPage] = useState(0);
+  const itemsPerPage = 10;
 
   const benchmark = benchmarks.find((i) => i.id === params.id);
-
   if (!benchmark) {
-    throw new Error(`Layer with id=${params.id} is not present.`);
+    throw new Error(`no benchmark with id=${params.id}`);
   }
 
-  const data = benchmark?.data.filter(
+  const filteredData = benchmark?.data.filter(
     (item) => dataFilter === "All" || item.source === dataFilter
+  );
+
+  const pageCount = Math.ceil((filteredData?.length ?? 0) / itemsPerPage);
+  const data = filteredData?.slice(
+    currentPage * itemsPerPage,
+    (currentPage + 1) * itemsPerPage
   );
 
   const sourceCounts = benchmark?.data.reduce(
@@ -25,11 +32,15 @@ export default function Benchmark({ params }: { params: { id: string } }) {
     {} as { [key: string]: number }
   );
 
+  const handlePageChange = (newPage: number) => {
+    setCurrentPage(newPage);
+  };
+
   return (
     <>
       <BenchmarkSidebar selectedId={params.id}>
-        <div className="px-12 my-12">
-          <div className="text-2xl mb-1">{benchmark?.name}</div>
+        <div className="w-full px-12 my-12">
+          <div className="text-2xl mb-1">Customer Service Triage Quality</div>
           <div className="text-sm">
             <div>
               <span className="font-light">Created by</span>
@@ -83,39 +94,25 @@ export default function Benchmark({ params }: { params: { id: string } }) {
               >
                 <strong>All</strong> ({benchmark?.data.length || "0"})
               </button>
-              <button
-                onClick={() => setDataFilter("csv")}
-                className={`px-2 py-1 text-sm rounded ${
-                  dataFilter === "csv"
-                    ? "bg-gray-500 text-gray-50 hover:bg-gray-600"
-                    : "bg-gray-200 text-gray-700 hover:bg-gray-300"
-                }`}
-              >
-                <strong>CSV Upload</strong> ({sourceCounts?.["csv"] || "0"})
-              </button>
-              <button
-                onClick={() => setDataFilter("live")}
-                className={`px-2 py-1 text-sm rounded ${
-                  dataFilter === "live"
-                    ? "bg-gray-500 text-gray-50 hover:bg-gray-600"
-                    : "bg-gray-200 text-gray-700 hover:bg-gray-300"
-                }`}
-              >
-                <strong>Live Users</strong> ({sourceCounts?.["live"] || "0"})
-              </button>
-              <button
-                onClick={() => setDataFilter("synthetic")}
-                className={`px-2 py-1 text-sm rounded ${
-                  dataFilter === "synthetic"
-                    ? "bg-gray-500 text-gray-50 hover:bg-gray-600"
-                    : "bg-gray-200 text-gray-700 hover:bg-gray-300"
-                }`}
-              >
-                <strong>Synthetic Data</strong> (
-                {sourceCounts?.["synthetic"] || "0"})
-              </button>
+              {sourceCounts &&
+                Object.keys(sourceCounts).map((source) => (
+                  <button
+                    key={source}
+                    onClick={() => setDataFilter(source)}
+                    className={`px-2 py-1 text-sm rounded ${
+                      dataFilter === source
+                        ? "bg-gray-500 text-gray-50 hover:bg-gray-600"
+                        : "bg-gray-200 text-gray-700 hover:bg-gray-300"
+                    }`}
+                  >
+                    <strong>
+                      {source.charAt(0).toUpperCase() + source.slice(1)}
+                    </strong>{" "}
+                    ({sourceCounts ? sourceCounts[source] : "0"})
+                  </button>
+                ))}
             </div>
-            <table className="border-collapse block md:table">
+            <table className="w-full border-collapse block md:table">
               <thead className="block md:table-header-group">
                 <tr className="border md:border-none md:table-row">
                   <th className="block md:table-cell">Row</th>
@@ -127,18 +124,33 @@ export default function Benchmark({ params }: { params: { id: string } }) {
               <tbody className="block md:table-row-group">
                 {data?.map((datum, idx) => (
                   <tr key={`key=${idx}`}>
-                    <td>{idx}</td>
-                    <td>
-                      {datum.input.length > 50
-                        ? `${datum.input.substring(0, 47)}...`
-                        : datum.input}
-                    </td>
+                    <td>{idx + 1 + currentPage * itemsPerPage}</td>
+                    <td className="truncate max-w-xs pr-4">{datum.input}</td>
                     <td>{datum.output}</td>
                     <td>{datum.source}</td>
                   </tr>
                 ))}
               </tbody>
             </table>
+            <div className="flex justify-between items-center mt-4">
+              <button
+                onClick={() => handlePageChange(currentPage - 1)}
+                disabled={currentPage === 0}
+                className="px-2 py-1 bg-gray-300 text-gray-800 rounded hover:bg-gray-400 disabled:opacity-50"
+              >
+                Previous
+              </button>
+              <span>
+                Page {currentPage + 1} of {pageCount}
+              </span>
+              <button
+                onClick={() => handlePageChange(currentPage + 1)}
+                disabled={currentPage === pageCount - 1}
+                className="px-2 py-1 bg-gray-300 text-gray-800 rounded hover:bg-gray-400 disabled:opacity-50"
+              >
+                Next
+              </button>
+            </div>
           </div>
         </div>
       </BenchmarkSidebar>
