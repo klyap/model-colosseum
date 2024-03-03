@@ -7,6 +7,8 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table"
+import { Benchmark, columns } from "./columns";
+import { DataTable } from "./data-table";
 
 
 const benchmarks = [
@@ -26,48 +28,39 @@ const modelsAndScores: ModelScores = {
   "GPT4": { version: "v3-030224" },
 }
 
-export default function Evaluation() {
+async function getData(): Promise<Benchmark[]> {
+  // Fetch data from your API here.
+  const randomInt = (min: number, max: number) => Math.floor(Math.random() * (max - min + 1)) + min;
+  return [
+    {
+      model_name: "Llama 2",
+      benchmark_1: randomInt(70, 99),
+      benchmark_2: randomInt(70, 99),
+      benchmark_3: randomInt(70, 99),
+      jailbreak: randomInt(70, 99)
+    },
+    {
+      model_name: "Llama 2",
+      benchmark_1: randomInt(70, 99),
+      benchmark_2: randomInt(70, 99),
+      benchmark_3: randomInt(70, 99),
+      jailbreak: randomInt(70, 99)
+    },
+    // ...
+  ]
+}
+
+export default async function Evaluation() {
+  const data = await getData()
+
   return <>
     <div className="m-12">
       <h1 className="text-xl">March 2 Evaluation Run</h1>
       <p className="text-slate-500">Benchmarking our latest finetune.</p>
 
-      <Table className="mt-8">
-        {/* <TableCaption>A list of your recent invoices.</TableCaption> */}
-        <TableHeader>
-          <TableRow>
-            <TableHead key={"model-name"}></TableHead>
-
-            {benchmarks.map((benchmarkName) =>
-              <TableHead key={benchmarkName}>{benchmarkName}</TableHead>
-            )}
-          </TableRow>
-        </TableHeader>
-        <TableBody>
-          {Object.keys(modelsAndScores).map((model) => (
-            <TableRow key={model}>
-              <TableCell className="font-bold">
-                <div className="flex flex-col">
-                  <div className="">{model}</div>
-                  <div className="text-slate-500 text-xs">{modelsAndScores[model].version}</div>
-                </div>
-              </TableCell>
-              <TableCell className="text-lg">
-                80
-              </TableCell>
-              <TableCell className="text-lg">
-                89
-              </TableCell>
-              <TableCell className="text-lg">
-                71
-              </TableCell>
-              <TableCell className="text-lg">
-                72
-              </TableCell>
-            </TableRow>
-          ))}
-        </TableBody>
-      </Table>
+      <div className="mt-8">
+        <DataTable columns={columns} data={data} />
+      </div>
     </div>
   </>;
 }
