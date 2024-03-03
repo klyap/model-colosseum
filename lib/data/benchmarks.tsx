@@ -7,70 +7,72 @@ export const benchmarks = [
     updatedAt: "2024-03-03T02:21:53.528Z",
     description:
       "This benchmark measures the effectiveness and efficiency of customer service triage systems. It evaluates how well a system can categorize and prioritize customer inquiries, ensuring that the most critical issues are addressed promptly and accurately.",
+    bestPrompt:
+      "You are AgentBot, a helpful customer service agent bot.\n\nYou are triaging support tickets into 1 of 3 codes according to the following map: {'Escalate': 0, 'Reference FAQ': 1, 'No Support Intent':2}. \nReturn the code only. \n\nFor examples, \nExample 1: [CUSTOMER INPUT]:My inquiry is done [AgentBot]: 2\nExample 2:[CUSTOMERINPUT]:My product is broken when it arrived [AgentBot]: 0\nExample 3:[CUSTOMER INPUT]:I am dont know how to configure this device [AgentBot]: 1\n\nNow please classify this support ticket:\n{{TEXT}}",
     data: [
       {
         input:
           "My computer won't turn on when I press the power button. The lights blink for a second and then nothing happens.",
         output: "A: Escalate",
-        source: "csv",
+        source: "upload",
       },
       {
         input: "How do I reset my password if I forgot it?",
         output: "B: Auto Reply",
-        source: "csv",
+        source: "upload",
       },
       {
         input:
           "Do you sell refurbished models of Phone X? I want to buy one but don't need the latest model.",
         output: "C: No Response",
-        source: "csv",
+        source: "upload",
       },
       {
         input:
           "The app is crashing when I try to upload photos. Can you help troubleshoot why it crashes?",
         output: "A: Escalate",
-        source: "csv",
+        source: "upload",
       },
       {
         input:
           "I ordered a blue Phone X 3 days ago and my order still says processing. When will it ship?",
         output: "B: Auto Reply",
-        source: "csv",
+        source: "upload",
       },
       {
         input:
           "The capacitive home button on Phone Y no longer senses my finger when I touch it.",
         output: "A: Escalate",
-        source: "csv",
+        source: "upload",
       },
       {
         input:
           "How do I use the macro mode to take close-up photos on my Phone Z?",
         output: "B: Auto Reply",
-        source: "live",
+        source: "product",
       },
       {
         input: "Do you provide student discounts on laptop purchases?",
         output: "C: No Response",
-        source: "live",
+        source: "product",
       },
       {
         input:
           "There is a crack across the corner of my Phone Q screen. Repair options?",
         output: "A: Escalate",
-        source: "live",
+        source: "product",
       },
       {
         input:
           "I'm thinking of switching from an iPhone. Does the Phone T model sync with iCloud?",
         output: "B: Auto Reply",
-        source: "live",
+        source: "product",
       },
       {
         input:
           "The battery life on my old Phone R is terrible now. Time for an upgrade!",
         output: "C: No Response",
-        source: "live",
+        source: "product",
       },
       {
         input:
@@ -205,18 +207,18 @@ export const benchmarks = [
         input:
           "My computer won't turn on when I press the power button. The lights blink for a second and then nothing happens.",
         output: "A: Escalate",
-        source: "csv",
+        source: "upload",
       },
       {
         input: "How do I reset my password if I forgot it?",
         output: "B: Auto Reply",
-        source: "csv",
+        source: "upload",
       },
       {
         input:
           "Do you sell refurbished models of Phone X? I want to buy one but don't need the latest model.",
         output: "C: No Response",
-        source: "csv",
+        source: "upload",
       },
     ],
   },

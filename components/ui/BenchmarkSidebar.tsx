@@ -20,12 +20,12 @@ export default function BenchmarkSidebar({
             return (
               <Link key={b.id} href={`/benchmark/${b.id}`}>
                 <div
-                  className={`px-4 py-4 border ${
-                    isSelected ? "bg-gray-100" : ""
+                  className={`px-4 py-4 border-t border-b ${
+                    isSelected ? "bg-indigo-100" : ""
                   }`}
                 >
-                  <div className="font-semibold text-md">{b.name}</div>
-                  <div className="text-sm text-gray-600">
+                  <div className="font-semibold text-sm">{b.name}</div>
+                  <div className="text-xs text-gray-600">
                     {new Date(b.updatedAt).toLocaleString("en-US", {
                       hour12: true,
                       hour: "numeric",
