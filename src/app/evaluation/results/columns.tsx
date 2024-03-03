@@ -69,11 +69,6 @@ export const columns: ColumnDef<Benchmark>[] = [
     cell: (props) => scoreCell({ ...props, handleCellClick })
   },
   {
-    accessorKey: "benchmark_3",
-    header: sortableHeader("Off-brand responses"),
-    cell: (props) => scoreCell({ ...props, handleCellClick })
-  },
-  {
     accessorKey: "jailbreak",
     header: sortableHeader("Superfresh Jailbreaks"),
     cell: (props) => scoreCell({ ...props, handleCellClick })
