@@ -61,27 +61,21 @@ export default function Benchmark({ params }: { params: { id: string } }) {
               </span>
             </div>
           </div>
-          <div className="py-8">
-            <div className="text-lg font-semibold">Description</div>
-            <div className="text-sm text-gray-500 mb-2">
-              This is used by our synthetic data generator to create samples
-              that are as representative and useful as possible. Please provide
-              any rubrics and specify the inputs and outputs that you expect.
-            </div>
-            <textarea
-              className="w-full p-4 border rounded-md"
-              defaultValue={benchmark?.description}
-            />
-            <div className="text-right">
+          <div className="pt-8">
+            <div className="flex items-center space-x-2">
+              <div className="text-lg font-semibold">Description</div>
               <button
-                className="px-4 py-2 bg-blue-500 text-white rounded opacity-50"
-                disabled
+                onClick={() => alert("Coming soon!")}
+                className="px-2 py-0.5 text-xs bg-gray-200 text-gray-800 rounded cursor-pointer"
               >
-                Save
+                Edit
               </button>
             </div>
+            <div className="text-sm text-gray-700">
+              {benchmark?.description}
+            </div>
           </div>
-          <div className="py-4">
+          <div className="pt-8">
             <div className="text-lg font-semibold mb-2">Dataset</div>
             <div className="flex space-x-2 mb-4">
               <button
@@ -115,10 +109,10 @@ export default function Benchmark({ params }: { params: { id: string } }) {
             <table className="w-full border-collapse block md:table">
               <thead className="block md:table-header-group">
                 <tr className="border md:border-none md:table-row">
-                  <th className="block md:table-cell">Row</th>
-                  <th className="block md:table-cell">Input</th>
-                  <th className="block md:table-cell">Output</th>
-                  <th className="block md:table-cell">Source</th>
+                  <th className="block text-left md:table-cell">Row</th>
+                  <th className="block text-left md:table-cell">Input</th>
+                  <th className="block text-left md:table-cell">Output</th>
+                  <th className="block text-left md:table-cell">Source</th>
                 </tr>
               </thead>
               <tbody className="block md:table-row-group">

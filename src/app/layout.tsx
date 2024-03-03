@@ -22,7 +22,7 @@ export default function RootLayout({
           <div className="text-xl font-semibold">
             <Link href="/">Model Colosseum</Link>
           </div>
-          <div className="flex gap-8 text-gray-500">
+          <div className="flex gap-8 text-gray-500 font-medium">
             <div
               className={`text-lg hover:text-gray-800 ${
                 path.includes("/benchmark") ? "text-gray-800" : ""
@@ -40,6 +40,27 @@ export default function RootLayout({
           </div>
         </nav>
         {children}
+        <footer className="w-full bg-gray-100 px-12 py-4 border-b border-t border-gray-300">
+          <div className="flex justify-center text-xs">
+            <span className="text-gray-500">
+              Made with ❤️ at the SPC OpenAI Hackathon. Team:{" "}
+              <a
+                href="https://twitter.com/noahmacca"
+                className="hover:text-gray-800"
+              >
+                {" "}
+                @noahmacca,
+              </a>{" "}
+              <a
+                href="https://twitter.com/soniajoseph"
+                className="hover:text-gray-800"
+              >
+                {" "}
+                @soniajoseph{" "}
+              </a>
+            </span>
+          </div>
+        </footer>
       </body>
     </html>
   );
