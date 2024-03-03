@@ -6,7 +6,7 @@ import { benchmarks } from "@/lib/data/benchmarks";
 export default function Benchmark() {
   const [dataFilter, setDataFilter] = React.useState("All");
 
-  const benchmark = benchmarks.find((i) => i.id === 123);
+  const benchmark = benchmarks.find((i) => i.id === "123");
   const data = benchmark?.data.filter(
     (item) => dataFilter === "All" || item.source === dataFilter
   );
