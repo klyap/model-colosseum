@@ -5,7 +5,7 @@ export default function Evaluation({ params }: { params: { id: string } }) {
   return (
     <>
       <EvaluationSidebar selectedId={params.id}>
-        <EvaluationDetail />
+        <EvaluationDetail selectedId={params.id} />
       </EvaluationSidebar>
     </>
   );
