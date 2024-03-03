@@ -28,7 +28,7 @@ export default function RootLayout({
                 path.includes("/benchmark") ? "text-blue-600" : ""
               }`}
             >
-              <Link href="/benchmark">Benchmarks</Link>
+              <Link href="/benchmark/1">Benchmarks</Link>
             </div>
             <div
               className={`text-lg hover:text-blue-600 ${

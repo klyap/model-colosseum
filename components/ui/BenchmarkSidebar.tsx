@@ -8,18 +8,17 @@ export default function BenchmarkSidebar({
   selectedId,
   children,
 }: {
-  selectedId: string;
+  selectedId?: string;
   children: React.ReactNode;
 }) {
   return (
     <div className="flex flex-row">
-      <div className="w-96 h-screen border-r">
+      <div className="w-96 max-w-96 h-screen border-r">
         {benchmarks.map((b) => {
           const isSelected = b.id === selectedId;
           return (
-            <Link href={`/benchmark/${b.id}`}>
+            <Link key={b.id} href={`/benchmark/${b.id}`}>
               <div
-                key={b.id}
                 className={`px-4 py-4 border ${
                   isSelected ? "bg-gray-100" : ""
                 }`}
