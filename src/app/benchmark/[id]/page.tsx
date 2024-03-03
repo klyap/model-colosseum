@@ -64,7 +64,7 @@ export default function Benchmark({ params }: { params: { id: string } }) {
             </div>
           </div>
           <div className="mt-4">
-            <InfoCards />
+            <InfoCards sourceCounts={sourceCounts} />
           </div>
 
           <div className="mt-8">
@@ -208,6 +208,7 @@ function InfoCard({
         <div className="text-xs pt-2 text-gray-400">{cardInfo.status}</div>
       </div>
       <div
+        onClick={() => alert("Coming soon!")}
         className={`text-sm ${
           cardInfo.buttonType === "primary"
             ? "bg-blue-500 text-white"
@@ -220,13 +221,13 @@ function InfoCard({
   );
 }
 
-function InfoCards() {
+function InfoCards({ sourceCounts }: { sourceCounts: any }) {
   return (
-    <div className="flex flex-row space-x-2">
+    <div className="flex flex-row space-x-3">
       <InfoCard
         cardInfo={{
           title: "CSV Upload",
-          value: "50",
+          value: sourceCounts && sourceCounts["upload"],
           valueUnit: "rows",
           status: "🟡 100 rows needed",
           buttonText: "Add",
@@ -236,7 +237,7 @@ function InfoCards() {
       <InfoCard
         cardInfo={{
           title: "Product",
-          value: "150",
+          value: sourceCounts && sourceCounts["product"],
           valueUnit: "rows",
           status: "🟢 Live",
           buttonText: "Add Integration",
@@ -246,9 +247,9 @@ function InfoCards() {
       <InfoCard
         cardInfo={{
           title: "Synthetic",
-          value: "1k",
+          value: sourceCounts && sourceCounts["synthetic"],
           valueUnit: "rows",
-          status: "🟡 +19k recommended",
+          status: "🟡 +1k recommended",
           buttonText: "Generate",
           buttonType: "primary",
         }}
