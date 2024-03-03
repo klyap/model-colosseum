@@ -42,7 +42,6 @@ export default function RootLayout({
             </li>
           </ul>
         </nav>
-        <div>HIIII</div>
         {children}
       </body>
     </html>
