@@ -1,6 +1,11 @@
 export const benchmarks = [
   {
     id: 123,
+    createdByName: "Noah",
+    createdAt: "2024-03-01T02:23:53.528Z",
+    updatedAt: "2024-03-03T02:21:53.528Z",
+    description:
+      "This benchmark measures the effectiveness and efficiency of customer service triage systems. It evaluates how well a system can categorize and prioritize customer inquiries, ensuring that the most critical issues are addressed promptly and accurately.",
     data: [
       {
         input:

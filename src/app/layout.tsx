@@ -1,6 +1,5 @@
 "use client";
 
-import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import Link from "next/link";
 import "./globals.css";
@@ -19,7 +18,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <nav className="w-full flex justify-between bg-gray-100 px-12 py-4">
+        <nav className="w-full flex justify-between bg-gray-100 px-12 py-4 border-b border-gray-300">
           <div className="text-xl font-semibold">
             <Link href="/">Model Colosseum</Link>
           </div>

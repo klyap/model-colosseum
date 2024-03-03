@@ -25,11 +25,21 @@ export default function Benchmark() {
       <div className="text-sm">
         <div>
           <span className="font-light">Created by</span>
-          <span className="font-semibold"> Noah</span>
+          <span className="font-semibold"> {benchmark?.createdByName}</span>
         </div>
         <div>
           <span className="font-light">Last updated</span>
-          <span className="font-semibold"> Today at 10:12 AM</span>
+          <span className="font-semibold">
+            {" "}
+            {benchmark?.updatedAt &&
+              new Date(benchmark.updatedAt).toLocaleString("en-US", {
+                month: "long",
+                day: "numeric",
+                hour: "numeric",
+                minute: "2-digit",
+                hour12: true,
+              })}
+          </span>
         </div>
       </div>
       <div className="py-8">
@@ -41,10 +51,7 @@ export default function Benchmark() {
         </div>
         <textarea
           className="w-full p-4 border rounded-md"
-          defaultValue="This benchmark measures the effectiveness and efficiency of customer
-          service triage systems. It evaluates how well a system can categorize
-          and prioritize customer inquiries, ensuring that the most critical
-          issues are addressed promptly and accurately."
+          defaultValue={benchmark?.description}
         />
         <div className="text-right">
           <button
@@ -55,7 +62,7 @@ export default function Benchmark() {
           </button>
         </div>
       </div>
-      <div className="py-8">
+      <div className="py-4">
         <div className="text-lg font-semibold mb-2">Dataset</div>
         <div className="flex space-x-2 mb-4">
           <button
