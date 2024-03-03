@@ -1,7 +1,7 @@
 export const evaluations = [
   {
     id: "1",
-    name: "Testing new prmopt",
+    name: "Testing new prompt",
     createdByName: "Noah",
     createdAt: "2024-03-01T02:23:53.528Z",
     updatedAt: "2024-03-03T02:21:53.528Z",
