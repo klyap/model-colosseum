@@ -26,6 +26,7 @@ type EvaluationReport = {
 function getData(currentEvalReport: EvaluationReport): Promise<Benchmark[]> {
   if (!currentEvalReport || !currentEvalReport.evalResults) return Promise.resolve([]);
   return Promise.resolve(currentEvalReport.evalResults.map(benchmark => {
+    console.log("benchmark", benchmark)
     const correctValuesPercentage = benchmark.values.filter(value => value.isCorrect).length / benchmark.values.length * 100;
     return {
       model_name: benchmark.model,
@@ -79,25 +80,24 @@ const ResultsTable = ({ currentEvalReport, selectedCell, columnsMap }: { current
       <table>
         <thead>
           <tr>
-            <th>Correct Output</th>
-            <th>Input</th>
-            <th>Is Correct</th>
-            <th>Model Output</th>
+            <th className="p-2">Correct Output</th>
+            <th className="p-2">Input</th>
+            <th className="p-2">Is Correct</th>
+            <th className="p-2">Model Output</th>
           </tr>
         </thead>
         <tbody>
           {testCaseData.map((testCase, index) => (
             <tr key={index}>
-              <td>{testCase.input}</td>
-              <td>{testCase.correctOutput}</td>
-              <td>{testCase.modelOutput}</td>
-              <td>{testCase.isCorrect ? 'Yes' : 'No'}</td>
+              <td className="p-2">{testCase.input}</td>
+              <td className="p-2">{testCase.correctOutput}</td>
+              <td className="p-2">{testCase.modelOutput}</td>
+              <td className="p-2">{testCase.isCorrect ? 'Yes' : 'No'}</td>
             </tr>
           ))}
         </tbody>
       </table>
     }
-
   </div>
 }
 
@@ -112,11 +112,6 @@ export default function EvaluationDetail({ selectedId }: { selectedId: string })
     setSelectedCell({ column, row });
     console.log("selectedCell", selectedCell)
   };
-
-  // const columnsMap = data.reduce((acc, benchmark, index) => ({
-  //   ...acc,
-  //   [`benchmark_${index + 1}`]: benchmark.model_name,
-  // }), {});
 
   const columnsMap = data.reduce((acc, benchmark, index) => ({
     ...acc,
